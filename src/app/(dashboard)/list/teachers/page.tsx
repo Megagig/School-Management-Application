@@ -1,6 +1,6 @@
 import Pagination from '@/components/Pagination';
 import Table from '@/components/Table';
-import TableSeach from '@/components/TableSeach';
+import TableSeach from '@/components/TableSearch';
 import { role, teachersData } from '@/lib/data';
 import Image from 'next/image';
 import Link from 'next/link';
