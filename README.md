@@ -24,7 +24,7 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 Turning Point School <a name="about-project"></a>
+# 📖 Turning Point Academy <a name="about-project"></a>
 
 1. A modern and efficient school management system built with the PERN stack and Next.js, combining server-side rendering and React for optimal performance.
 2. Features include student enrollment, attendance tracking, grade management, course scheduling, and parent-teacher communication, all within a seamless user experience.
