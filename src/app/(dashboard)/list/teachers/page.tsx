@@ -5,18 +5,9 @@ import TableSeach from '@/components/TableSearch';
 import { role, teachersData } from '@/lib/data';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Class, Subject, Teacher } from '@prisma/client';
 
-type Teacher = {
-  id: number;
-  teacherId: string;
-  name: string;
-  email?: string;
-  photo: string;
-  phone: string;
-  subjects: string[];
-  classes: string[];
-  address: string;
-};
+type TeacherList = Teacher & { subjects: Subject[] } & { classes: Class[] };
 
 const columns = [
   {
@@ -55,14 +46,14 @@ const columns = [
 ];
 
 const TeacherListPage = () => {
-  const renderRow = (item: Teacher) => (
+  const renderRow = (item: TeacherList) => (
     <tr
       key={item.id}
       className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight"
     >
       <td className="flex item-center gap-4 p-4">
         <Image
-          src={item.photo}
+          src={item.img || '/avatar.png'}
           alt=""
           width={40}
           height={40}
@@ -73,7 +64,7 @@ const TeacherListPage = () => {
           <p className="text-xs text-gray-500">{item?.email}</p>
         </div>
       </td>
-      <td className="hidden md:table-cell">{item.teacherId}</td>
+      <td className="hidden md:table-cell">{item.username}</td>
       <td className="hidden md:table-cell">{item.subjects.join(',')}</td>
       <td className="hidden md:table-cell">{item.classes.join(',')}</td>
       <td className="hidden md:table-cell">{item.phone}</td>
@@ -89,7 +80,7 @@ const TeacherListPage = () => {
             // <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaPurple">
             //   <Image src="/delete.png" alt="" width={16} height={16} />
             // </button>
-            <FormModal table="teacher" type="delete" id={item.id} />
+            <FormModal table="teacher" type="delete" id={Number(item.id)} />
           )}
         </div>
       </td>
@@ -113,7 +104,7 @@ const TeacherListPage = () => {
             {/* <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
               <Image src="/plus.png" alt="" width={14} height={14} />
             </button> */}
-              <FormModal  table="teacher" type="create"/>
+            <FormModal table="teacher" type="create" />
           </div>
         </div>
       </div>
