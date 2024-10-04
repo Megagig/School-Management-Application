@@ -53,7 +53,7 @@ model Teacher{
   createdAt DateTime @default(now())
   subjects  Subject[]
   lessons Lesson[]
-  class Class[]
+  classes Class[]
 } 
 
 model Parent{
