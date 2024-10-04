@@ -24,6 +24,7 @@ model Student{
   address String
   img String?
   bloodType String
+   birthday  DateTime
   sex       UserSex
   createdAt DateTime @default(now())
   parentId String
@@ -47,6 +48,7 @@ model Teacher{
   address String
   img String?
   bloodType String
+  birthday  DateTime
   sex       UserSex
   createdAt DateTime @default(now())
   subjects  Subject[]
@@ -77,8 +79,8 @@ model Class{
   id Int @id @default(autoincrement())
   name String @unique
   capacity Int
-  supervisorId String
-  supervisor Teacher @relation(fields: [supervisorId], references: [id])
+  supervisorId String?
+  supervisor Teacher? @relation(fields: [supervisorId], references: [id])
   lessons Lesson[]
   students Student[]
   gradeId Int
@@ -162,6 +164,8 @@ model Event{
   id Int @id @default(autoincrement())
   title String
   description String
+  startTime DateTime
+  endTime DateTime
   startDate DateTime
   endDate DateTime
   classId Int?
